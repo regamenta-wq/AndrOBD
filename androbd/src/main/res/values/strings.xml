@@ -22,6 +22,8 @@
     <string name="obd_permanentcodes">OBD fault codes (permanent)</string>
     <string name="obd_pendingcodes">OBD fault codes (pending)</string>
     <string name="obd_clearcodes">Clear fault codes</string>
+    <string name="ai_diagnostics">AI dijagnostika</string>
+    <string name="ai_diagnostics_connect_first">Poveži se sa adapterom pre AI dijagnostike.</string>
     <string name="obd_clear_info">
 This will reset the MIL and clear all emission-related diagnostic\n
 information, including:\n

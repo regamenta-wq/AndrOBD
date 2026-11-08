@@ -47,6 +47,7 @@ android {
 dependencies {
     implementation project(':plugin')
     implementation project(':library')
+    implementation project(':mcpserver')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.github.mik3y:usb-serial-for-android:3.9.0'
     implementation 'com.github.anastr:speedviewlib:1.6.1'

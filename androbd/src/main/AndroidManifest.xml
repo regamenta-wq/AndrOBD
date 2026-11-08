@@ -91,6 +91,9 @@
             android:name=".SettingsActivity"
             android:configChanges="touchscreen|orientation|screenSize"
             android:label="@string/settings" />
+        <service
+            android:name=".McpServerService"
+            android:exported="false" />
         <activity
             android:name=".PidCustomization"
             android:label="@string/customize_display"

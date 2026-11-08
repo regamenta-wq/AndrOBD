@@ -977,6 +977,18 @@ public class MainActivity extends PluginManager
                 return true;
             }
 
+            // GolfDroid: AI diagnostics (MCP scan)
+            if(id == R.id.ai_diagnostics) {
+                if (CommService.getState() != CommService.STATE.CONNECTED) {
+                    Toast.makeText(this, R.string.ai_diagnostics_connect_first,
+                            Toast.LENGTH_LONG).show();
+                    return true;
+                }
+                ObdBridgeHolder.get().startScan("manual");
+                Toast.makeText(this, R.string.ai_diagnostics, Toast.LENGTH_SHORT).show();
+                return true;
+            }
+
             if(id == R.id.plugin_manager) {
                 setManagerView();
                 return true;
@@ -2556,12 +2568,16 @@ public class MainActivity extends PluginManager
 
         mode = MODE.ONLINE;
         // Menu visibility will be handled by updateMenuVisibility() call in setMode
-        
+
         setMenuItemEnable(R.id.obd_services, true);
         // display connection status
         setStatus(getString(R.string.title_connected_to, mConnectedDeviceName));
         // send RESET to Elm adapter
         CommService.elm.reset();
+
+        // GolfDroid: expose ObdBridge + start MCP server on :8080
+        ObdBridgeHolder.set(new GolfObdBridge());
+        startService(new Intent(this, McpServerService.class));
     }
 
     /**
@@ -2571,6 +2587,8 @@ public class MainActivity extends PluginManager
     {
         // handle further initialisations
         setMode(MODE.OFFLINE);
+        // GolfDroid: stop MCP server
+        stopService(new Intent(this, McpServerService.class));
     }
 
     /**

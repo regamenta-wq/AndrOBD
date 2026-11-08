@@ -67,4 +67,11 @@
             <!-- submenu: obd_service.xml - Contains diagnostic functions -->
         </menu>
     </item>
+
+    <!-- GolfDroid: AI diagnostics (MCP) -->
+    <item
+        android:id="@+id/ai_diagnostics"
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:title="@string/ai_diagnostics"
+        app:showAsAction="ifRoom" />
 </menu>

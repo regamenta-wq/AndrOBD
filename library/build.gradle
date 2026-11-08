@@ -40,7 +40,7 @@ task generateDtcResources(type: Exec) {
                 "--src", "/tmp/OBD-Droid/modules/dtc-database/data/source-data",
                 "--out", "${projectDir}/src/main/java/com/fr3ts0n/ecu/prot/obd/res/golfdroid_codes.properties"
 }
-preBuild.dependsOn generateDtcResources
+// Idempotent generator; the committed bundle is the primary source.
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:6.1.3'
