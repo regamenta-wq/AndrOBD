@@ -1,0 +1,15 @@
+GolfDroid
+Copyright 2026 GolfDroid contributors
+
+This product includes software developed by:
+- fr3ts0n/AndrOBD (GPL-3.0) — https://github.com/fr3ts0n/AndrOBD
+  OBD-II ELM327 communication library and Android app.
+
+- Wal33D/dtc-database (MIT) — https://github.com/Wal33D/dtc-database
+  Diagnostic Trouble Code database (28,220+ codes).
+
+- Shreyamkmr/AgenticCar (MIT) — https://github.com/Shreyamkmr/AgenticCar
+  MCP-over-HTTP server architecture reference.
+
+- Ircama/ELM327-emulator — https://github.com/Ircama/ELM327-emulator
+  ELM327 simulator used for development and testing.
