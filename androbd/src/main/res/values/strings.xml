@@ -2,6 +2,9 @@
 <resources>
     <!--  AndrOBD -->
     <string name="app_name" translatable="false">AndrOBD</string>
+    <string name="mcp_token_title">MCP server token</string>
+    <string name="mcp_token_summary">Tap to copy token for proot agent skill</string>
+    <string name="mcp_token_copied">MCP token copied to clipboard</string>
     <string name="copyright_fr3ts0n" translatable="false">© 2015-2026 fr3ts0n</string>
     <string name="translation_credits">Translation by fr3ts0n</string>
     <string name="app_description">Android OBD vehicle diagnostics app for ELM327 Bluetooth adapter</string>

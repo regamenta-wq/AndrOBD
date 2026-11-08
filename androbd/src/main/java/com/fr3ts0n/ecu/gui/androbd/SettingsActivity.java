@@ -215,6 +215,7 @@ public class SettingsActivity extends AppCompatActivity
 			updateNetworkSelections();
 			setPrefClickListener(KEY_BITCOIN);
 			setPrefClickListener(KEY_OPEN_LOG_DIR);
+			setPrefClickListener("mcp_token");
 		}
 
 		/**
@@ -564,6 +565,11 @@ public class SettingsActivity extends AppCompatActivity
 					openLogDirectory();
 					return true;
 				}
+				else if("mcp_token".equals(preference.getKey()))
+				{
+					copyMcpTokenToClipboard(requireContext(), preference);
+					return true;
+				}
 				else
 				{
 					// OPEN intents require result handling
@@ -582,6 +588,29 @@ public class SettingsActivity extends AppCompatActivity
 		/**
 		 * Handler for result messages from other activities
 		 */
+		/**
+		 * Read (or generate on first use) the MCP server token and copy it to the
+		 * clipboard so the user can paste it into ~/.golfdroid/config.json for the
+		 * proot agent-skill.
+		 */
+		private void copyMcpTokenToClipboard(android.content.Context ctx,
+		                                     Preference pref)
+		{
+			String token = prefs.getString("mcp_token", null);
+			if (token == null || token.isEmpty())
+			{
+				token = com.golfdroid.mcp.TokenStore.generate();
+				prefs.edit().putString("mcp_token", token).apply();
+			}
+			pref.setSummary(token);
+			android.content.ClipboardManager cm =
+				(android.content.ClipboardManager) ctx.getSystemService(
+					android.content.Context.CLIPBOARD_SERVICE);
+			cm.setPrimaryClip(android.content.ClipData.newPlainText("mcp_token", token));
+			android.widget.Toast.makeText(ctx,
+				R.string.mcp_token_copied, android.widget.Toast.LENGTH_LONG).show();
+		}
+
 		@Override
 		public void onActivityResult(int requestCode, int resultCode, Intent data)
 		{
