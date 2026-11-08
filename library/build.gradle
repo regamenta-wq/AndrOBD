@@ -32,6 +32,16 @@ test {
     useJUnitPlatform()
 }
 
+// Generate GolfDroid DTC codes resource bundle from Wal33D/dtc-database (MIT)
+// if the committed bundle is missing. Idempotent: pre-existing bundle wins.
+task generateDtcResources(type: Exec) {
+    onlyIf { !file("src/main/java/com/fr3ts0n/ecu/prot/obd/res/golfdroid_codes.properties").exists() }
+    commandLine "python3", "${rootProject.projectDir}/tools/convert_dtc.py",
+                "--src", "/tmp/OBD-Droid/modules/dtc-database/data/source-data",
+                "--out", "${projectDir}/src/main/java/com/fr3ts0n/ecu/prot/obd/res/golfdroid_codes.properties"
+}
+preBuild.dependsOn generateDtcResources
+
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:6.1.3'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
